@@ -1,3 +1,4 @@
+#This repo is owned by Elvin Abraham Garcia, in COP3502C Section 02 taught by Arup Guha
 # Genetics
 Recitation 8, convert letters into num, num into letters, "encrypted" with power
 
