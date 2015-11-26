@@ -4,16 +4,12 @@
 #include <math.h>
 
 void determineScenario(int numCases); //Reads in each test case (of up to LENGTH characters), and determines which of the two functions below are used.
-char NUMtoDNA(int nums); //Convert number into DNA code value
-int DNAtoNUM(char* letters); //"Encrypt" DNA code value into numbers
+void NUMtoDNA(int nums); //Convert number into DNA code value
+void DNAtoNUM(char* letters); //"Encrypt" DNA code value into numbers
 int findArrayLength(char* array); // Finds the Length of the array. NUMtoDNA: to specify length of temporary array to swap ints for correct decryption order. DNAtoNUM: setting highest power.
-void printSequence(char* output, int arrayLength);
+void printSequence(int printWhich, int sum, char* output, int arrayLength);
 
 #define LENGTH 15
-#define A 0
-#define C 1
-#define G 2
-#define T 3
 
 int sequenceNUM = 1;
 
@@ -54,7 +50,7 @@ void determineScenario(int numCases){
 
 }
 
-char NUMtoDNA(int nums){
+void NUMtoDNA(int nums){
 
     int division = nums;
     int remainder;
@@ -105,19 +101,51 @@ char NUMtoDNA(int nums){
         }
     }
 
-    printf("Coded Sequence: %s (FINAL DIGIT IS TRASH)\n", sequenceCoded); //ignore any ending characters that aren't 'C','A','G', or 'T', remaining trash characters that don't get printed.
+    printf("Coded Sequence: %s (FINAL DIGIT MOST LIKELY TRASH)\n", sequenceCoded); //ignore any ending characters that aren't 'C','A','G', or 'T', remaining trash characters that don't get printed.
 
-    printSequence(sequenceCoded, arrayLength);
-
-
-    return 0;
+    printSequence(0, 0, sequenceCoded, arrayLength);
 
 }
 
-int DNAtoNUM(char* letters){
+void DNAtoNUM(char* letters){
+
+    int i;
+    int sum = 0;
+    int arrayLength = findArrayLength(letters);
+    int exponent = arrayLength -1;
 
     printf("DNA to NUM (letters value): %s\n", letters);
-    return 0;
+    printf("Array Length: %d\n", arrayLength);
+
+    for(i=0;i<arrayLength;i++){
+        if(letters[0] == 'A'){
+            printf("LEADING A ENTERED, OUTSIDE OF PROGRAM SPECIFICATIONS, SKIPPING THIS STRING\n");
+            return;
+        }
+        else if(letters[i] == 'A'){
+            printf("HIT A\n");
+            sum = sum + (0 * pow(4, exponent));
+            exponent--;
+        }
+        else if(letters[i] == 'C'){
+            printf("HIT C\n");
+            sum = sum + (1 * pow(4, exponent));
+            exponent--;
+        }
+        else if(letters[i] == 'G'){
+            printf("HIT G\n");
+            sum = sum + (2 * pow(4, exponent));
+            exponent--;
+        }
+        else if(letters[i] == 'T'){
+            printf("HIT T\n");
+            sum = sum + (3 * pow(4, exponent));
+            exponent--;
+        }
+    }
+
+    printf("'Encrypted' Sequence: %d\n", sum);
+    printSequence(1, sum," ", arrayLength);
 
 }
 
@@ -131,15 +159,21 @@ int findArrayLength(char* array){
 
 }
 
-void printSequence(char* output, int arrayLength){
+void printSequence(int printWhich, int sum, char* output, int arrayLength){
 
     int i;
 
-    printf("Sequence #%d: ",sequenceNUM);
-    sequenceNUM++;
-    for(i=0;i<arrayLength;i++){
-        printf("%c", output[i]);
+    if(printWhich == 0) {
+        printf("Sequence #%d: ", sequenceNUM);
+        sequenceNUM++;
+        for (i = 0; i < arrayLength; i++) {
+            printf("%c", output[i]);
+        }
+        printf("\n");
     }
-    printf("\n");
+    else if(printWhich == 1){
+        printf("Sequence #%d: %d\n", sequenceNUM, sum);
+        sequenceNUM++;
+    }
 
 }
