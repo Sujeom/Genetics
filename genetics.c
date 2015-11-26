@@ -20,11 +20,7 @@ int main(){
     scanf("%d",&cases);
     determineScenario(cases);
 
-
-
-
-
-    system("pause");
+    //system("pause");
     return 0;
 };
 
@@ -60,48 +56,48 @@ void NUMtoDNA(int nums){
     int k = 0;
     int j;
 
-    printf("Sequence before memset: %s\n", sequence);
+    //printf("Sequence before memset: %s\n", sequence);
     memset(&sequence, 0, sizeof(sequence));
-    printf("Sequence after memset: %s\n", sequence);
+    //printf("Sequence after memset: %s\n", sequence);
 
-    printf("NUM to DNA (nums value): %d\n", nums);
+    //printf("NUM to DNA (nums value): %d\n", nums);
     while(division > 0){
         remainder = division%4;
         division = division/4;
         sequence[i] = remainder + '0';
-        printf("Division: %d\tRemainder: %d\t Sequence at i: %c\t Sequence: %s\n", division, remainder, sequence[i], sequence);
+        //printf("Division: %d\tRemainder: %d\t Sequence at i: %c\t Sequence: %s\n", division, remainder, sequence[i], sequence);
         i++;
     }
 
     arrayLength = findArrayLength(sequence);
     char sequenceCoded[arrayLength];
-    printf("Sequence Length: %d\n", arrayLength);
+    //printf("Sequence Length: %d\n", arrayLength);
 
     for(j=arrayLength-1;j>=0;j--){
-        printf("K: %d\n", k);
+        //printf("K: %d\n", k);
         if(sequence[j] == '0') {
             sequenceCoded[k] = 'A';
-            printf("HIT\n");
+            //printf("HIT\n");
             k++;
         }
         else if(sequence[j] == '1') {
             sequenceCoded[k] = 'C';
-            printf("HIT\n");
+            //printf("HIT\n");
             k++;
         }
         else if(sequence[j] == '2') {
             sequenceCoded[k] = 'G';
-            printf("HIT\n");
+            //printf("HIT\n");
             k++;
         }
         else if(sequence[j] == '3') {
             sequenceCoded[k] = 'T';
-            printf("HIT\n");
+            //printf("HIT\n");
             k++;
         }
     }
 
-    printf("Coded Sequence: %s (FINAL DIGIT MOST LIKELY TRASH)\n", sequenceCoded); //ignore any ending characters that aren't 'C','A','G', or 'T', remaining trash characters that don't get printed.
+    //printf("Coded Sequence: %s (FINAL DIGIT MOST LIKELY TRASH)\n", sequenceCoded); //ignore any ending characters that aren't 'C','A','G', or 'T', remaining trash characters that don't get printed.
 
     printSequence(0, 0, sequenceCoded, arrayLength);
 
@@ -114,8 +110,8 @@ void DNAtoNUM(char* letters){
     int arrayLength = findArrayLength(letters);
     int exponent = arrayLength -1;
 
-    printf("DNA to NUM (letters value): %s\n", letters);
-    printf("Array Length: %d\n", arrayLength);
+    //printf("DNA to NUM (letters value): %s\n", letters);
+    //printf("Array Length: %d\n", arrayLength);
 
     for(i=0;i<arrayLength;i++){
         if(letters[0] == 'A'){
@@ -123,28 +119,28 @@ void DNAtoNUM(char* letters){
             return;
         }
         else if(letters[i] == 'A'){
-            printf("HIT A\n");
+            //printf("HIT A\n");
             sum = sum + (0 * pow(4, exponent));
             exponent--;
         }
         else if(letters[i] == 'C'){
-            printf("HIT C\n");
+            //printf("HIT C\n");
             sum = sum + (1 * pow(4, exponent));
             exponent--;
         }
         else if(letters[i] == 'G'){
-            printf("HIT G\n");
+            //printf("HIT G\n");
             sum = sum + (2 * pow(4, exponent));
             exponent--;
         }
         else if(letters[i] == 'T'){
-            printf("HIT T\n");
+            //printf("HIT T\n");
             sum = sum + (3 * pow(4, exponent));
             exponent--;
         }
     }
 
-    printf("'Encrypted' Sequence: %d\n", sum);
+    //printf("'Encrypted' Sequence: %d\n", sum);
     printSequence(1, sum," ", arrayLength);
 
 }
