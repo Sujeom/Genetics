@@ -1,3 +1,12 @@
+/*
+Name: Elvin Abraham Garcia
+Class: COP3502C
+Section: 002
+Summary: This program is used to convert a genetic sequence (consisting of A,C,G, and/or T), into
+        a base-10 number, and vice versa. The first input specifies how many N sequences there are to
+        convert. The following N lines will be filled with the aforementioned genetic sequences or
+        base-10 numbers.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
